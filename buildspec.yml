@@ -3,8 +3,12 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      terraform: 1.5
+      java: corretto11  # any valid runtime to satisfy CodeBuild
     commands:
+      - echo Installing Terraform...
+      - curl -o terraform.zip https://releases.hashicorp.com/terraform/1.5.7/terraform_1.5.7_linux_amd64.zip
+      - unzip terraform.zip
+      - mv terraform /usr/local/bin/
       - terraform --version
 
   pre_build:
